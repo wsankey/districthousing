@@ -1,6 +1,8 @@
 ENV["RAILS_ENV"] = "test"
 require File.expand_path("../../config/environment", __FILE__)
 require "rails/test_help"
+require "capybara/rails"
+require "capybara/poltergeist"
 
 # To add Capybara feature tests add `gem "minitest-rails-capybara"`
 # to the test group in the Gemfile and uncomment the following:
@@ -11,6 +13,8 @@ require "rails/test_help"
 
 class ActiveSupport::TestCase
     ActiveRecord::Migration.check_pending!
+
+    Capybara.app = DchousingApps
 
     # Setup all fixtures in test/fixtures/*.(yml|csv) for all tests in alphabetical order.
   #

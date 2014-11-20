@@ -21,3 +21,4 @@ As a demo, the app can be found at http://districthousing.runningen.net/.  Don't
 ## Dependencies
 
     brew cask install pdftk
+    brew install phantomjs

@@ -25,3 +25,12 @@ gem 'bootstrap-sass'
 gem 'minitest-rails'
 gem 'bootstrap_form'
 gem 'markdown-rails'
+
+group :development, :test do
+  gem 'capybara'
+  gem 'poltergeist'
+  gem 'launchy'
+  gem 'capybara-webkit'
+  gem 'rspec'
+  gem 'rspec-rails'
+end

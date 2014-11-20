@@ -1,10 +1,12 @@
 one:
   id: 1
   email: foo@bar.baz
+  password: password
 
 two:
   id: 2
   email: fizzbuzz@bar.baz
+  password: otherpassword
 
 sample:
   id: 3
