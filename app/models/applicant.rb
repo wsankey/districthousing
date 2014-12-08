@@ -20,6 +20,7 @@ class Applicant < ActiveRecord::Base
   accepts_nested_attributes_for :residences, allow_destroy: true
   has_many :landlords, through: :residences, class_name: "Person", dependent: :destroy
   has_many :addresses, through: :residences, class_name: "Address", dependent: :destroy
+  has_many :mail_addresses, through: :people, class_name: "Address", dependent: :destroy
   accepts_nested_attributes_for :landlords, allow_destroy: true
 
   belongs_to :user
@@ -27,6 +28,10 @@ class Applicant < ActiveRecord::Base
   has_many :incomes, through: :people
   has_many :employments, through: :people
   has_many :criminal_histories, through: :people
+
+  def known_addresses
+    Set.new([identity.mail_address] + addresses + mail_addresses)
+  end
 
   def household_members_including_self
     [identity, household_members_people].flatten

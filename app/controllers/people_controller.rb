@@ -6,7 +6,14 @@ class PeopleController < ApplicationController
   def update
     @person = Person.find(params[:id])
 
-    if @person.update(person_params)
+    success = @person.update(person_params)
+
+    if selected_address_id != @person.mail_address.id
+      @person.mail_address = Address.find(selected_address_id)
+      @person.save
+    end
+
+    if success
       redirect_to next_page
     else
       render :edit
@@ -19,6 +26,10 @@ class PeopleController < ApplicationController
   end
 
   private
+
+  def selected_address_id
+    params[:person] && params[:person][:mail_address_id] || @person.mail_address.id
+  end
 
   def person_params
     params.require(:person).permit(

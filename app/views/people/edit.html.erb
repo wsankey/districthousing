@@ -18,6 +18,15 @@
       <%= f.fields_for :mail_address do |m| %>
         <%= render "addresses/fields", builder: m %>
       <% end %>
+
+      <%= f.collection_select(
+        :mail_address_id,
+        @current_applicant.known_addresses,
+        :id,
+        :to_s,
+        include_blank: true,
+        label: "Or, use an existing address"
+      ) %>
     </div>
 
     <div class="col-md-4">
